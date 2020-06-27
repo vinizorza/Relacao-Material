@@ -3,11 +3,10 @@ package com.vztech.relacaomaterial.controller;
 import com.vztech.relacaomaterial.entity.Material;
 import com.vztech.relacaomaterial.repository.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/material")
@@ -18,8 +17,16 @@ public class MaterialController {
 
     @GetMapping("/list")
     public List<Material> list(){
-//        return materialRepository.findAll();
+        return materialRepository.findAll();
+    }
 
-        return materialRepository.findByDescricao("teste");
+    @RequestMapping("/listByDescricao")
+    public Material deletarEvento(String descricao){
+        return (Material) materialRepository.findByDescricao(descricao);
+    }
+
+    @RequestMapping(value="/{codigo}", method= RequestMethod.GET)
+    public Optional<Material> getMaterial(@PathVariable("codigo") int codigo){
+        return materialRepository.findById(codigo);
     }
 }

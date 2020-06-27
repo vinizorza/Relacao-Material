@@ -2,11 +2,8 @@ package com.vztech.relacaomaterial.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
 @Entity
-//@NamedQuery(name = "Material.findByDescricao",
-//            query = "SELECT m FROM Material WHERE ")
 public class Material {
 
     @Id
